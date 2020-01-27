@@ -1,0 +1,15 @@
+.start-node-circle {
+    stroke-width: 0;
+}
+
+.start-link-line {
+    stroke: rgba(220, 220, 220, 0.9);
+}
+
+.start-group {
+    fill        : #108EE9;
+    fill-opacity: 0.15;
+    stroke      : #108EE9;
+    stroke-width: 1;
+    cursor      : pointer;
+}

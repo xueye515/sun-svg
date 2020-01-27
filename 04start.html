@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>星移图</title>
+    <script src="./source/svg-pan-zoom.min.js"></script>
+    <link href='./start/style.css' rel='stylesheet' />
+    <style>
+        #sun-start {
+            width: 100%;
+            height: 90vh;
+            border: 1px solid gray;
+        }
+    </style>
+    <script type="module">
+        import { startData } from './start/data.js'
+        import { Start } from './start/start.js';
+        const svgEle = document.querySelector('#sun-start').children[0]
+        Start.init(svgEle, startData);
+        Start.draw();
+
+        const onLockSelected = (e) => {
+
+            if (e.target.checked) {
+                Start.lockDarkHouse();
+            } else {
+                Start.unlockDarkHouse()
+            }
+        }
+
+        const onGroupSelected = (e) => {
+            if (e.target.checked) {
+                Start.showGroupInfo();
+            } else {
+                Start.hideGroupInfo()
+            }
+        }
+
+        const dom_lock = document.querySelector('#lock');
+        const dom_group = document.querySelector('#group');
+
+        dom_lock.addEventListener('click', onLockSelected);
+        dom_group.addEventListener('click', onGroupSelected);
+
+    </script>
+</head>
+
+<body>
+    <input id="lock" type="checkbox">锁定</input>
+    <input id="group" type="checkbox">族群</input>
+    </div>
+    <div id="sun-start">
+        <svg version="1.1" baseProfile="full" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+        </svg>
+    </div>
+</body>
+
+</html>

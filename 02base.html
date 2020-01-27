@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>svg</title>
+    <style>
+        body {
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- 1.基础 width height x y style stroke边框
+    2.opacity 整体透明度 -->
+    <svg version="1.1" baseProfile="full" width="100%" height="600" xmlns="http://www.w3.org/2000/svg">
+        <!-- rect  
+        1. rx ry 圆角-->
+        <rect x="20" y="20" width="200" height="100" rx="20" ry="20"
+            style="fill: aquamarine; fill-opacity: 0.5; stroke-width: 1; stroke-opacity: 0.7; stroke:blueviolet">
+        </rect>
+        <!-- 1.cx cy 位置 r半径 x y 没作用 -->
+        <circle cx="120" cy="60" r="50" style="stroke-width: 1; stroke:brown" />
+        <ellipse cx="100" cy="60" rx="100" ry="20" />
+        <!-- x1 y1 x2 y2 开始结束点 -->
+        <line x1="50" y1="50" x2="180" y2="100" style="stroke-width: 2; stroke:burlywood" />
+        <!-- points -->
+        <polygon points="50,50 200,50 200,200 50,200" style="stroke-width: 2; stroke:coral; fill-opacity: 0;" />
+        <polyline points="150,150 300,150 300,300 400,200" style="stroke-width: 3; fill:white; stroke:rebeccapurple;" />
+        <!-- M = moveto
+        L = lineto
+        H = horizontal lineto
+        V = vertical lineto
+        C = curveto   -三次贝塞尔曲线  C x1 y1, x2 y2, x y   xy 为终点 x1y1是起点控制点 x2y2 是终点控制点
+        S = smooth curveto 一个点某一侧的控制点是它另一侧的控制点的对称（以保持斜率不变）。可以使用一个简写的贝塞尔曲线命令S：S x2 y2, x y 
+        Q = quadratic Belzier curve 二次贝塞尔曲线Q比三次贝塞尔曲线简单，只需要一个控制点，用来确定起点和终点的曲线斜率。需要两组参数，控制点和终点坐标。Q命令：Q x1 y1, x y
+        T = smooth quadratic Belzier curveto  只定义终点 曲率使用前一次 q或者t 所以前一个标签必须 q或t
+        A = elliptical Arc 弧形 
+        Z = closepath
+        注释：以上所有命令均允许小写字母。大写表示绝对定位，小写表示相对定位。 -->
+        <path d="M250 0 L150 200 L350 200 Z" style="fill:white; stroke-width: 3; stroke:green" />
+        <path d="M250 10 l50 50 v50 h50 c0 30,100 30,100 30 s50 60,100 0 q100 180,200 0 t100 0"
+            style="fill:white; stroke-width: 3; stroke:green" />
+        <path d="M400 80 A 30 20 -45 0 1 200 100" stroke="green" fill="blue" />
+        <path d="M10 315
+           L 110 215
+           A 30 50 45 1 0 162.55 162.45
+           L 172.55 152.45
+           A 30 50 -45 0 1 215.1 109.9
+           L 315 10" stroke="black" fill="green" stroke-width="2" fill-opacity="0.5" />
+    </svg>
+</body>
+
+</html>
