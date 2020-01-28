@@ -7,19 +7,104 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>loading</title>
     <style>
+        circle {
+            transition: stroke-dasharray .5s;
+        }
+
+        .loading-g {
+            transform: translate(100px, 100px) rotate(-90deg) rotateX(-180deg);
+        }
+
+        .num {
+            position: absolute;
+            display: inline-block;
+            font-size: 60px;
+            top: 50%;
+            left: 0;
+            right: 0;
+            margin-top: -.75em;
+            text-align: center;
+        }
+
+        #path1 {
+            stroke-dasharray: 1000;
+            animation: loader-path 5s linear;
+        }
+
+        #path2 {
+            animation: loader-path2 5s linear;
+        }
+
+        @keyframes loader-path {
+            0% {
+                stroke-dashoffset: 1000;
+            }
+
+            100% {
+                stroke-dashoffset: 0;
+            }
+        }
+
+        @keyframes loader-path2 {
+            0% {
+                stroke-dasharray: 1;
+                stroke-dashoffset: 0;
+            }
+
+            100% {
+                stroke-dasharray: 1000;
+                stroke-dashoffset: 0;
+            }
+        }
     </style>
 </head>
 
 <body>
-    <div>
-        <svg version="1.1" baseProfile="full" width="300" height="200" xmlns="http://www.w3.org/2000/svg">
-            <g>
-                <circle cx="100" cy="100" r="70" stroke-width="20" fill="white" stroke="#00A9FF"
-                    stroke-dasharray="220 1">
+    <div style="position: relative;display: inline-block;">
+        <svg width="200" height="200" viewBox="0 0 200 200">
+            <defs>
+                <linearGradient id="gradient1" x1="1" y1="0" x2="0" y2="0">
+                    <stop offset="0%" stop-color="#00A9FF"></stop>
+                    <stop offset="100%" stop-color="#FF7437"></stop>
+                </linearGradient>
+            </defs>
+            <g class="loading-g">
+                <circle r="80" stroke-width="20" fill="none" stroke="url(#gradient1)">
+                </circle>
+                <circle id="loading" r="80" stroke-width="21" fill="none" stroke="#efefef">
                 </circle>
             </g>
         </svg>
+        <span class="num">10</span>
     </div>
+    <div>
+        <svg width="700" height="400">
+            <g>
+                <path id="path1" d="M50 10 L200 10 L120 100 L130 300 L110 280" stroke-width='10' stroke-linecap="round"
+                    stroke-linejoin="round" fill="none" stroke='green' />
+                <path id="path2" d="M400 10 l100 10 l120 200 l-130 -100 l110 200" stroke-width='10'
+                    stroke-linecap="round" stroke-linejoin="round" fill="none" stroke='green' />
+            </g>
+        </svg>
+    </div>
+    <script type="module">
+        const loadingDom = document.querySelector('#loading');
+        const numDom = document.querySelector('.num');
+        const allLength = 3.14 * 80 * 2//园周长
+        let allTime = 10;
+        let runTime = 0;
+
+        const loadingFnc = () => {
+            if (runTime > allTime) return;
+            const per = runTime / allTime * allLength;
+            loadingDom.setAttribute('stroke-dasharray', `${per} ${allLength + 1}`);
+            numDom.innerHTML = allTime - runTime;
+            runTime++;
+            setTimeout(loadingFnc, 1000)
+        }
+        loadingFnc();
+
+    </script>
 </body>
 
 </html>
